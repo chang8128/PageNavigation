@@ -8,16 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+    @State var showModal: Bool = false
+
+      var body: some View {
+        Button(action: {
+          self.showModal.toggle()
+        }) {
+          Text("Launch Modal")
         }
-        .padding()
+        .sheet(isPresented: self.$showModal, onDismiss: {
+          self.showModal = false
+        }) {
+          PageOneContent()
+        }
+      }
     }
-}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
