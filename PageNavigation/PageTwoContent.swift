@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PageTwoContent: View {
-    @Environment (\.presentationMode) var presentationMode
+    @Environment (\.modalMode) var modalMode // << extract modalMode
 
       var body: some View {
         NavigationView {
@@ -17,8 +17,7 @@ struct PageTwoContent: View {
               .padding()
 
             Button(action: {
-              // How to dismiss parent modal here instead
-              self.presentationMode.wrappedValue.dismiss()
+              self.modalMode.wrappedValue = false // << close modal
             }) {
               Text("Finish")
             }
